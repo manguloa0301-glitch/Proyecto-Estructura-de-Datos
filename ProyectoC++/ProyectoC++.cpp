@@ -1,19 +1,47 @@
-// ProyectoC++.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-//
-
 #include <iostream>
+#include "Agenda.h"
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Agenda agenda;
+    int opcion;
+
+    do {
+        cout << "---Gestor de agenda de contactos---\n";
+        cout << "1. Agregar Contacto\n";
+        cout << "2. Listar Contactos\n";
+        cout << "3. Ordenar por nombre\n";
+        cout << "4. Ordenar por telefono\n";
+        cout << "0. Salir\n";
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+        cin.ignore();
+
+        if (opcion == 1) {
+            string nombre, telefono, correo;
+            cout << "Ingrese el Nombre: ";
+            getline(cin, nombre);
+            cout << "Ingrese el Telefono: ";
+            getline(cin, telefono);
+            cout << "Ingrese el Correo: ";
+            getline(cin, correo);
+
+            Contacto nuevo(nombre, telefono, correo);
+            agenda.agregarContacto(nuevo);
+            cout << "Contacto agregado exitosamente.\n";
+
+        }
+        else if (opcion == 2) {
+            agenda.listarContactos();
+        }
+        else if (opcion == 3) {
+            agenda.ordenarPorNombre();
+        }
+        else if (opcion == 4) {
+            agenda.ordenarPorTelefono();
+        }
+    } while (opcion != 0);
+    cout << "Saliendo del programa...\n";
+    return 0;
 }
-
-// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menú Depurar > Iniciar depuración
-
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
-//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
