@@ -14,6 +14,9 @@ public:
 	void listarContactos() const;
 	void ordenarPorNombre();
 	void ordenarPorTelefono();
+	int buscarSecuencial(string nombre) const;
+	int buscarBinaria(string nombre)const;
+	void mostrarContactoEncontrado(int indice) const;
 };
 #endif
 

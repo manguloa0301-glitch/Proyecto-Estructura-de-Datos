@@ -48,3 +48,41 @@ void Agenda::listarContactos() const {
 		c.mostrar();
 	}
 }
+
+int Agenda::buscarSecuencial(string nombre) const {
+	for (size_t i = 0; i < contactos.size(); i++) {
+		if (contactos[i].getNombre() == nombre) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+int Agenda::buscarBinaria(string nombre)const {
+	int inicio = 0;
+	int fin = contactos.size() - 1;
+
+	while (inicio<=fin){
+		int medio = (inicio + fin) / 2;
+		if (contactos[medio].getNombre() == nombre) {
+			return medio;
+		}
+		else if (contactos[medio].getNombre() < nombre) {
+			inicio = medio + 1;
+		}
+		else {
+			fin = medio - 1;
+		}
+	}
+	return -1;
+}
+
+void Agenda::mostrarContactoEncontrado(int indice)const {
+	if (indice >= 0 && indice < contactos.size()) {
+		cout << "\nContacto encontrado:\n";
+		contactos[indice].mostrar();
+	}
+	else {
+		cout << "Contacto no encontrado.\n";
+	}
+}

@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Agenda.h"
-using namespace std;
 
 int main()
 {
@@ -13,6 +12,8 @@ int main()
         cout << "2. Listar Contactos\n";
         cout << "3. Ordenar por nombre\n";
         cout << "4. Ordenar por telefono\n";
+        cout << "5. Buscar contacto (secuencial)\n";
+        cout << "6. Buscar contacto (binaria)\n";
         cout << "0. Salir\n";
         cout << "Seleccione una opcion: ";
         cin >> opcion;
@@ -27,9 +28,7 @@ int main()
             cout << "Ingrese el Correo: ";
             getline(cin, correo);
 
-            Contacto nuevo(nombre, telefono, correo);
-            agenda.agregarContacto(nuevo);
-            cout << "Contacto agregado exitosamente.\n";
+            agenda.agregarContacto(Contacto(nombre, telefono, correo));
 
         }
         else if (opcion == 2) {
@@ -41,7 +40,23 @@ int main()
         else if (opcion == 4) {
             agenda.ordenarPorTelefono();
         }
+        else if (opcion == 5) {
+            string nombre;
+            cout << "Ingrese el nombre a buscar: ";
+            getline(cin, nombre);
+            int pos = agenda.buscarSecuencial(nombre);
+            agenda.mostrarContactoEncontrado(pos);
+        }
+        else if (opcion == 6) {
+            agenda.ordenarPorNombre();
+            string nombre;
+            cout << "Ingrese el nombre a buscar: ";
+            getline(cin, nombre);
+            int pos = agenda.buscarBinaria(nombre);
+            agenda.mostrarContactoEncontrado(pos);
+        }
+
     } while (opcion != 0);
-    cout << "Saliendo del programa...\n";
+    
     return 0;
 }
