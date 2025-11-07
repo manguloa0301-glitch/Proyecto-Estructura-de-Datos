@@ -86,3 +86,8 @@ void Agenda::mostrarContactoEncontrado(int indice)const {
 		cout << "Contacto no encontrado.\n";
 	}
 }
+#include <vector> 
+
+vector<Contacto> Agenda::obtenerContactos() const {
+	return contactos;
+}

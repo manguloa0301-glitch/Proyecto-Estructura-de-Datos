@@ -1,9 +1,12 @@
 #include <iostream>
 #include "Agenda.h"
+#include "ListaEnlazada.h"
 
 int main()
 {
     Agenda agenda;
+    ListaEnlazada lista;
+
     int opcion;
 
     do {
@@ -14,6 +17,7 @@ int main()
         cout << "4. Ordenar por telefono\n";
         cout << "5. Buscar contacto (secuencial)\n";
         cout << "6. Buscar contacto (binaria)\n";
+        cout << "7. Eliminar Contacto\n";
         cout << "0. Salir\n";
         cout << "Seleccione una opcion: ";
         cin >> opcion;
@@ -55,7 +59,26 @@ int main()
             int pos = agenda.buscarBinaria(nombre);
             agenda.mostrarContactoEncontrado(pos);
         }
+        else if (opcion == 7) {
+            cout << "Copiando contactos de la agenda a la lista...\n";
+            lista = ListaEnlazada(); 
+            vector<Contacto> copia = agenda.obtenerContactos();
+            for (auto& c : copia) {
+                lista.insertar(c);
+            }
 
+            cout << "\nContactos actuales:\n";
+            lista.mostrar();
+
+            string nombreEliminar;
+            cout << "\nIngrese el nombre del contacto a eliminar: ";
+            getline(cin, nombreEliminar);
+
+            lista.eliminar(nombreEliminar);
+
+            cout << "\nLista actualizada:\n";
+            lista.mostrar();
+        }
     } while (opcion != 0);
     
     return 0;

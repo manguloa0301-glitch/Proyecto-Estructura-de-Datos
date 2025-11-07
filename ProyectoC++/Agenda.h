@@ -17,6 +17,7 @@ public:
 	int buscarSecuencial(string nombre) const;
 	int buscarBinaria(string nombre)const;
 	void mostrarContactoEncontrado(int indice) const;
+	vector<Contacto> obtenerContactos() const;
 };
 #endif
 
