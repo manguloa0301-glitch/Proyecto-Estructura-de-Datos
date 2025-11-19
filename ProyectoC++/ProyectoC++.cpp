@@ -1,11 +1,13 @@
 #include <iostream>
 #include "Agenda.h"
 #include "ListaEnlazada.h"
+#include "PilaHistorial.h"
 
 int main()
 {
     Agenda agenda;
     ListaEnlazada lista;
+    PilaHistorial historial;
 
     int opcion;
 
@@ -18,6 +20,7 @@ int main()
         cout << "5. Buscar contacto (secuencial)\n";
         cout << "6. Buscar contacto (binaria)\n";
         cout << "7. Eliminar Contacto\n";
+        cout << "8. Historial\n";
         cout << "0. Salir\n";
         cout << "Seleccione una opcion: ";
         cin >> opcion;
@@ -33,6 +36,10 @@ int main()
             getline(cin, correo);
 
             agenda.agregarContacto(Contacto(nombre, telefono, correo));
+
+            historial.push("Se agrego el contacto: " + nombre);
+
+            cout << "Contacto agregado exitosamente.\n";
 
         }
         else if (opcion == 2) {
@@ -76,9 +83,15 @@ int main()
 
             lista.eliminar(nombreEliminar);
 
+            historial.push("Se elimino el contacto: " + nombreEliminar);
+
             cout << "\nLista actualizada:\n";
             lista.mostrar();
         }
+        else if (opcion == 8) {
+            historial.mostrar();
+        }
+
     } while (opcion != 0);
     
     return 0;
