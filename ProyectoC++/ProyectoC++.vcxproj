@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Agenda.cpp" />
+    <ClCompile Include="ColaContactos.cpp" />
     <ClCompile Include="Contacto.cpp" />
     <ClCompile Include="ListaEnlazada.cpp" />
     <ClCompile Include="PilaHistorial.cpp" />
@@ -131,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Agenda.h" />
+    <ClInclude Include="ColaContactos.h" />
     <ClInclude Include="Contacto.h" />
     <ClInclude Include="ListaEnlazada.h" />
     <ClInclude Include="PilaHistorial.h" />

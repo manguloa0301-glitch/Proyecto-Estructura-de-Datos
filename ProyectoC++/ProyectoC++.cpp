@@ -2,12 +2,14 @@
 #include "Agenda.h"
 #include "ListaEnlazada.h"
 #include "PilaHistorial.h"
+#include "ColaContactos.h"
 
 int main()
 {
     Agenda agenda;
     ListaEnlazada lista;
     PilaHistorial historial;
+    ColaContactos colaPendientes;
 
     int opcion;
 
@@ -21,6 +23,9 @@ int main()
         cout << "6. Buscar contacto (binaria)\n";
         cout << "7. Eliminar Contacto\n";
         cout << "8. Historial\n";
+        cout << "9. Agregar Contactos pendientes\n";
+        cout << "10. Lista de contactos pendientes\n";
+        cout << "11. Transferir contactos pendientes\n";
         cout << "0. Salir\n";
         cout << "Seleccione una opcion: ";
         cin >> opcion;
@@ -90,6 +95,32 @@ int main()
         }
         else if (opcion == 8) {
             historial.mostrar();
+        }
+        else if (opcion == 9) {
+            string nombre, telefono, correo;
+
+            cout << "Ingrese el Nombre: ";
+            getline(cin, nombre);
+            cout << "Ingrese el Telefono: ";
+            getline(cin, telefono);
+            cout << "Ingrese el Correo: ";
+            getline(cin, correo);
+
+            colaPendientes.enqueue(Contacto(nombre, telefono, correo));
+            historial.push("Se encolo contacto pendiente: " + nombre);
+        }
+        else if (opcion == 10) {
+            colaPendientes.mostrar();
+        }
+        else if (opcion == 11) {
+            cout << "\nTransfiriendo contactos desde la cola...\n";
+
+            while (!colaPendientes.colaVacia()) {
+                Contacto c = colaPendientes.dequeue();
+                agenda.agregarContacto(c);
+                historial.push("Se agrego desde la cola: " + c.getNombre());
+            }
+            cout << "Transferencia completa.\n";
         }
 
     } while (opcion != 0);
