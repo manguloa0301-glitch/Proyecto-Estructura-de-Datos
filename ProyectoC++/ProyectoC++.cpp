@@ -3,6 +3,7 @@
 #include "ListaEnlazada.h"
 #include "PilaHistorial.h"
 #include "ColaContactos.h"
+#include "ArbolContactos.h"
 
 int main()
 {
@@ -10,6 +11,7 @@ int main()
     ListaEnlazada lista;
     PilaHistorial historial;
     ColaContactos colaPendientes;
+    ArbolContactos arbol;
 
     int opcion;
 
@@ -26,6 +28,11 @@ int main()
         cout << "9. Agregar Contactos pendientes\n";
         cout << "10. Lista de contactos pendientes\n";
         cout << "11. Transferir contactos pendientes\n";
+        cout << "12. Construir arbol de contactos\n";
+        cout << "13. Mostrar arbol\n";
+        cout << "14. Recorrer INORDEN\n";
+        cout << "15. Recorrer PREORDEN\n";
+        cout << "16. Buscar en arbol\n";
         cout << "0. Salir\n";
         cout << "Seleccione una opcion: ";
         cin >> opcion;
@@ -122,7 +129,39 @@ int main()
             }
             cout << "Transferencia completa.\n";
         }
+        else if (opcion == 12) {
+            arbol = ArbolContactos(); 
 
+            auto lista = agenda.obtenerContactos();
+            for (auto& c : lista) {
+                arbol.insertarContacto(c);
+            }
+
+            cout << "Arbol construido con " << lista.size() << " contactos.\n";
+        }
+        else if (opcion == 13) {
+            arbol.mostrarArbol();
+        }
+        else if (opcion == 14) {
+            arbol.recorrerInorden();
+        }
+        else if (opcion == 15) {
+            arbol.recorrerPreorden();
+        }
+        else if (opcion == 16) {
+            string nombre;
+            cout << "Ingrese el nombre a buscar: ";
+            getline(cin, nombre);
+
+            NodoArbol* encontrado = arbol.buscarContacto(nombre);
+
+            if (encontrado) {
+                cout << "Se encontro: " << encontrado->dato.getNombre() << endl;
+            }
+            else {
+                cout << "No se encontro el contacto.\n";
+            }
+            }
     } while (opcion != 0);
     
     return 0;
