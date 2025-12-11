@@ -5,6 +5,7 @@
 #include "ColaContactos.h"
 #include "ArbolContactos.h"
 
+//Menu para gestionar los contactos: 
 void menuContactos(Agenda& agenda, PilaHistorial& historial) {
     int op;
     do {
@@ -64,7 +65,7 @@ void menuContactos(Agenda& agenda, PilaHistorial& historial) {
 
     } while (op != 0);
 }
-
+//Menu para eliminar los contactos:
 void menuEliminar(Agenda& agenda, ListaEnlazada& lista, PilaHistorial& historial) {
     cout << "\n--- ELIMINAR CONTACTO ---\n";
 
@@ -87,7 +88,7 @@ void menuEliminar(Agenda& agenda, ListaEnlazada& lista, PilaHistorial& historial
     cout << "\nLista actualizada:\n";
     lista.mostrar();
 }
-
+//Menu para guardar contactos pendientes:
 void menuPendientes(ColaContactos& cola, Agenda& agenda, PilaHistorial& historial) {
     int op;
     do {
@@ -126,7 +127,7 @@ void menuPendientes(ColaContactos& cola, Agenda& agenda, PilaHistorial& historia
 
     } while (op != 0);
 }
-
+//Menu para el arbol:
 void menuArbol(ArbolContactos& arbol, Agenda& agenda) {
     int op;
 
@@ -174,12 +175,12 @@ void menuArbol(ArbolContactos& arbol, Agenda& agenda) {
 
     } while (op != 0);
 }
-
+//Menu para mostrar el historial:
 void menuHistorial(PilaHistorial& historial) {
     cout << "\n--- HISTORIAL DE OPERACIONES ---\n";
     historial.mostrar();
 }
-
+//Menu principal:
 int main()
 {
     Agenda agenda;
